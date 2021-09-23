@@ -147,22 +147,22 @@
     initOrderForm(){
       const thisProduct = this;
       console.log('initOrderForm:');
-      thisProduct.form.addEventListener('submit', function(event){
+      thisProduct.form.addEventListener('submit', function (event) {
         event.preventDefault();
         thisProduct.processOrder();
       });
-      for(let input of thisProduct.formInputs){
-        input.addEventListener('change', function(){
+      for (let input of thisProduct.formInputs) {
+        input.addEventListener('change', function () {
           thisProduct.processOrder();
         });
       }
-      thisProduct.cartButton.addEventListener('click', function(event){
+      thisProduct.cartButton.addEventListener('click', function (event) {
         event.preventDefault();
         thisProduct.processOrder();
         thisProduct.addToCart();
       });
     }
-    processOrder(){
+    processOrder() {
       const thisProduct = this;
       console.log('processOrder:');
 
@@ -174,14 +174,14 @@
       thisProduct.priceSingle = thisProduct.data.price;
 
       // for every category (param)...
-      for(let paramId in thisProduct.data.params) {
+      for (let paramId in thisProduct.data.params) {
 
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
         console.log(paramId, param);
 
         // for every option in this category
-        for(let optionId in param.options) {
+        for (let optionId in param.options) {
 
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
@@ -192,7 +192,7 @@
 
           if (optionSelected) {
             // check if the option is not default
-            if(!option.default == true) {
+            if (!option.default == true) {
 
               // price += option.price;
               thisProduct.priceSingle += option['price'];
@@ -200,7 +200,7 @@
           } else {
 
             // check if the option is default
-            if(option.default == true)
+            if (option.default == true)
 
               // price -= option.price;
               thisProduct.priceSingle -= option['price'];
@@ -501,6 +501,7 @@
       console.log('thisApp:', thisApp.data);
       for (let productData in thisApp.data.products) {
         //new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
+        new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
       }
     },
     initData: function () {
