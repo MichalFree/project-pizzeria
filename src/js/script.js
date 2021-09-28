@@ -409,29 +409,30 @@
       }
     }
     sendOrder() {
-     const thisCart = this;
-     const url = settings.db.url + '/' + settings.db.orders;
-     let payload = {};
-     payload.address = thisCart.dom.address.value;
-     payload.phone = thisCart.dom.phone.value;
-     payload.totalPrice = thisCart.totalPrice;
-     payload.subtotalPrice = thisCart.subtotalPrice;
-     payload.totalNumber = thisCart.totalNumber;
-     payload.deliveryFee = thisCart.deliveryFee;
-     payload.products = [];
-     for (let prod of thisCart.products) {
-       payload.products.push(prod.getData());
-     }
-     const options = {
-       method: 'POST',
-       headers: {
-         'Content-type': 'application/json',
-       },
-       body: JSON.stringify(payload),
-     };
-     fetch(url, options);
-   }
- }
+      const thisCart = this;
+      const url = settings.db.url + '/' + settings.db.orders;
+      let payload = {
+        address: thisCart.dom.address.value,
+        phone: thisCart.dom.phone.value,
+        totalPrice: thisCart.totalPrice,
+        subtotalPrice: thisCart.subtotalPrice,
+        totalNumber: thisCart.totalNumber,
+        deliveryFee: thisCart.deliveryFee,
+        products: [],
+      }
+      for (let prod of thisCart.products) {
+        payload.products.push(prod.getData());
+      }
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+      fetch(url, options);
+    }
+  }
   class CartProduct {
     constructor(menuProduct, element) {
       const thisCartProduct = this;
