@@ -1,72 +1,27 @@
-<<<<<<< HEAD
 import { select, settings, templates, classNames } from '../settings.js';
-=======
-<<<<<<< HEAD
-import { select, settings, templates, classNames } from '../settings.js';
-=======
-import { select, settings, templates } from '../settings.js';
->>>>>>> master
->>>>>>> tableSelection
 import { utils } from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 import DatePicker from './DatePicker.js';
 import HourPicker from './HourPicker.js';
-<<<<<<< HEAD
-//import Cart from './Cart.js';
-=======
-<<<<<<< HEAD
-//import Cart from './Cart.js';
-=======
->>>>>>> master
->>>>>>> tableSelection
 
 class Booking {
   constructor(element) {
     const thisBooking = this;
-<<<<<<< HEAD
     thisBooking.tableSelected = [];
-=======
-<<<<<<< HEAD
-    thisBooking.tableSelected = [];
-=======
->>>>>>> master
->>>>>>> tableSelection
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
   }
-<<<<<<< HEAD
   getData() {
-=======
-<<<<<<< HEAD
-  getData() {
-=======
-  getData () {
->>>>>>> master
->>>>>>> tableSelection
     const thisBooking = this;
     const startDateParam =
       settings.db.dateStartParamKey +
       '=' +
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> tableSelection
       utils.dateToStr(thisBooking.datePicker.minDate);
     const endDateParam =
       settings.db.dateEndParamKey +
       '=' +
       utils.dateToStr(thisBooking.datePicker.maxDate);
-<<<<<<< HEAD
-=======
-=======
-      utils.dateToStr(thisBooking.date.minDate);
-    const endDateParam =
-      settings.db.dateEndParamKey +
-      '=' +
-      utils.dateToStr(thisBooking.date.maxDate);
->>>>>>> master
->>>>>>> tableSelection
     const params = {
       booking: [startDateParam, endDateParam],
       eventsCurrent: [settings.db.notRepeatParam, startDateParam, endDateParam],
@@ -76,43 +31,19 @@ class Booking {
       booking:
         settings.db.url +
         '/' +
-<<<<<<< HEAD
         settings.db.bookings +
-=======
-<<<<<<< HEAD
-        settings.db.bookings +
-=======
-        settings.db.booking +
->>>>>>> master
->>>>>>> tableSelection
         '?' +
         params.booking.join('&'),
       eventsCurrent:
         settings.db.url +
         '/' +
-<<<<<<< HEAD
         settings.db.events +
-=======
-<<<<<<< HEAD
-        settings.db.events +
-=======
-        settings.db.event +
->>>>>>> master
->>>>>>> tableSelection
         '?' +
         params.eventsCurrent.join('&'),
       eventsRepeat:
         settings.db.url +
         '/' +
-<<<<<<< HEAD
         settings.db.events +
-=======
-<<<<<<< HEAD
-        settings.db.events +
-=======
-        settings.db.event +
->>>>>>> master
->>>>>>> tableSelection
         '?' +
         params.eventsRepeat.join('&'),
     };
@@ -135,10 +66,6 @@ class Booking {
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
   }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> tableSelection
   parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this;
     thisBooking.booked = {};
@@ -171,7 +98,6 @@ class Booking {
       }
       thisBooking.booked[date][hourBlock].push(table);
     }
-<<<<<<< HEAD
   }
   updateDOM() {
     const thisBooking = this;
@@ -199,49 +125,12 @@ class Booking {
       }
     }
   }
-=======
-=======
-  parseData (bookings, eventsCurrent, eventsRepeat) {
-    console.log(bookings, eventsCurrent, eventsRepeat);
->>>>>>> master
-  }
-  updateDOM() {
-    const thisBooking = this;
-    thisBooking.date = thisBooking.datePicker.value;
-    thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
-    let allAvailable = false;
-    if (
-      typeof thisBooking.booked[thisBooking.date] == 'undefined' ||
-      typeof thisBooking.booked[thisBooking.date][thisBooking.hour] == 'undefined'
-    ) {
-      allAvailable = true;
-    }
-    for (let table of thisBooking.dom.tables) {
-      let tableId = table.getAttribute(settings.booking.tableIdAttribute);
-      if (!isNaN(tableId)) {
-        tableId = parseInt(tableId);
-      }
-      if (
-        !allAvailable &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
-      ) {
-        table.classList.add(classNames.booking.tableBooked);
-      } else {
-        table.classList.remove(classNames.booking.tableBooked);
-      }
-    }
-  }
->>>>>>> tableSelection
   render(element) {
     const thisBooking = this;
     const generatedHTML = templates.bookingWidget(element);
     thisBooking.dom = {};
     thisBooking.dom.wrapper = element;
     thisBooking.dom.wrapper.innerHTML = generatedHTML;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> tableSelection
     thisBooking.dom.peopleAmount = element.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = element.querySelector(select.booking.hoursAmount);
     thisBooking.dom.datePicker = element.querySelector(select.widgets.datePicker.wrapper);
@@ -258,28 +147,11 @@ class Booking {
     );
     thisBooking.dom.starters = thisBooking.dom.form.querySelectorAll(
       select.booking.starters
-<<<<<<< HEAD
-=======
-=======
-    thisBooking.dom.peopleAmount = element.querySelector(
-      select.booking.peopleAmount
-    );
-    thisBooking.dom.hoursAmount = element.querySelector(
-      select.booking.hoursAmount
-    );
-    thisBooking.dom.datePicker = element.querySelector(
-      select.widgets.datePicker.wrapper
-    );
-    thisBooking.dom.hourPicker = element.querySelector(
-      select.widgets.hourPicker.wrapper
->>>>>>> master
->>>>>>> tableSelection
     );
   }
   initWidgets() {
     const thisBooking = this;
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
-<<<<<<< HEAD
     thisBooking.dom.peopleAmount.addEventListener('updated', function () {
       thisBooking.removeTableSelection();
     });
@@ -371,18 +243,6 @@ class Booking {
       body: JSON.stringify(payload),
     };
     fetch(url, options);
-<<<<<<< HEAD
-=======
-=======
-    thisBooking.dom.peopleAmount.addEventListener('updated', function () {});
-    thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
-    thisBooking.dom.hoursAmount.addEventListener('updated', function () {});
-    thisBooking.date = new DatePicker(thisBooking.dom.datePicker);
-    thisBooking.dom.datePicker.addEventListener('updated', function () {});
-    thisBooking.hour = new HourPicker(thisBooking.dom.hourPicker);
-    thisBooking.dom.hourPicker.addEventListener('updated', function () {});
->>>>>>> master
->>>>>>> tableSelection
   }
 }
 
