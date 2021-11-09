@@ -207,11 +207,6 @@ class Booking {
   prepareBooking() {
     const thisBooking = this;
     const url = settings.db.url + '/' + settings.db.bookings;
-    //if (thisBooking.tableSelected != null) {
-    //  if (thisBooking.tableSelected.length == 0) {
-    //    thisBooking.tableSelected = null;
-    //  }
-    //}
     let payload = {};
     payload.date = thisBooking.datePicker.value;
     payload.hour = thisBooking.hourPicker.value;

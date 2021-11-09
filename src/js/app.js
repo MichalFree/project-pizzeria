@@ -77,6 +77,18 @@ const app = {
     const thisApp = this;
     const homeWidget = document.querySelector(select.containerOf.home);
     thisApp.home = new Home(homeWidget);
+    thisApp.orderOnline = document.querySelector(classNames.home.orderOnline);
+    thisApp.bookOnline = document.querySelector(classNames.home.bookTable);
+    thisApp.orderOnline.addEventListener('click', function(event){
+      event.preventDefault();
+      window.location.hash = '#/order';
+      thisApp.initPages();
+    });
+    thisApp.bookOnline.addEventListener('click', function(event){
+      event.preventDefault();
+      window.location.hash = '#/booking';
+      thisApp.initPages();
+    });
   },
   init: function () {
     const thisApp = this;

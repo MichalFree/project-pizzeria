@@ -72,7 +72,7 @@ export const select = {
     starters: '.booking-form [name="starter"]',
   },
   nav: {
-    links: '.main-nav a',
+    links: '.active-page a',
   },
 };
 export const classNames = {
@@ -95,6 +95,10 @@ export const classNames = {
   pages: {
     active: 'active',
   },
+  home: {
+    orderOnline: '.order-online',
+    bookTable: '.book-a-table',
+  }
 };
 export const settings = {
   amountWidget: {
