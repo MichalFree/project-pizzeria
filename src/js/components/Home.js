@@ -1,27 +1,21 @@
-import { select, templates } from '../settings.js';
+import { templates } from '../settings.js';
+import CarouselWidget from '../components/CarouselWidget.js';
 
-class Home {
-  constructor(element){
+class Home extends CarouselWidget {
+  constructor(element) {
     const thisHome = this;
     thisHome.render(element);
-    thisHome.initWidgets();
+    thisHome.CarouselWidget();
   }
   render(element) {
     const thisHome = this;
     const generatedHTML = templates.homeWidget();
-    console.log (generatedHTML);
+    console.log(generatedHTML);
     thisHome.dom = {};
-    thisHome.dom.wrapper= element;
+    thisHome.dom.wrapper = element;
     thisHome.dom.wrapper.innerHTML = generatedHTML;
   }
-  initWidgets() {
-    const element = document.querySelector(select.widgets.carousel);
-    new Flickity (element, {
-      autoPlay: 2500,
-      prevNextButtons: false,
-      imagesLoaded: true,
-    });
-  }
+  CarouselWidget()
 }
 
 export default Home;

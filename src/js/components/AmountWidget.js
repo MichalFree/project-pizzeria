@@ -14,12 +14,12 @@ class AmountWidget extends BaseWidget {
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
   }
-  isValid(value){
+  isValid(value) {
     return !isNaN(value)
       && value >= settings.amountWidget.defaultMin
       && value <= settings.amountWidget.defaultMax;
   }
-  renderValue(){
+  renderValue() {
     const thisWidget = this;
     thisWidget.dom.input.value = thisWidget.value;
   }
