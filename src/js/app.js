@@ -68,23 +68,23 @@ const app = {
       app.cart.add(event.detail.product);
     });
   },
-  initBooking: function() {
+  initBooking: function () {
     const thisApp = this;
     const bookingWidget = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking(bookingWidget);
   },
-  initHome: function(){
+  initHome: function () {
     const thisApp = this;
     const homeWidget = document.querySelector(select.containerOf.home);
     thisApp.home = new Home(homeWidget);
     thisApp.orderOnline = document.querySelector(classNames.home.orderOnline);
     thisApp.bookOnline = document.querySelector(classNames.home.bookTable);
-    thisApp.orderOnline.addEventListener('click', function(event){
+    thisApp.orderOnline.addEventListener('click', function (event) {
       event.preventDefault();
       window.location.hash = '#/order';
       thisApp.initPages();
     });
-    thisApp.bookOnline.addEventListener('click', function(event){
+    thisApp.bookOnline.addEventListener('click', function (event) {
       event.preventDefault();
       window.location.hash = '#/booking';
       thisApp.initPages();
