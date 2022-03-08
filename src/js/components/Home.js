@@ -5,7 +5,7 @@ class Home {
   constructor(element) {
     const thisHome = this;
     thisHome.render(element);
-    CarouselWidget.initWidgets();
+    new CarouselWidget;
   }
   render(element) {
     const thisHome = this;
@@ -15,7 +15,6 @@ class Home {
     thisHome.dom.wrapper = element;
     thisHome.dom.wrapper.innerHTML = generatedHTML;
   }
-  initWidgets()
 }
 
 export default Home;
