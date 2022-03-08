@@ -173,10 +173,11 @@ class Booking {
     thisBooking.dom.floorPlan.addEventListener('click', function (event) {
       thisBooking.initTables(event);
     });
-    thisBooking.dom.form.addEventListener('submit', function (event) {
+    thisBooking.dom.form.addEventListener('submit', (event) => {
       event.preventDefault();
       thisBooking.prepareBooking();
-    });
+      alert("Thank you!")
+    }, { once: true });
   }
   initTables(event) {
     event.preventDefault();
@@ -204,6 +205,11 @@ class Booking {
     }
     thisBooking.tableSelected = null;
   }
+  resetPhoneAndData() {
+    const thisBooking = this;
+    thisBooking.dom.phone.value = "",
+      thisBooking.dom.address.value = ""
+  }
   prepareBooking() {
     const thisBooking = this;
     const url = settings.db.url + '/' + settings.db.bookings;
@@ -222,6 +228,7 @@ class Booking {
       }
     }
     thisBooking.send(url, payload);
+    thisBooking.resetPhoneAndData();
     thisBooking.makeBooked(
       payload.date,
       payload.hour,
